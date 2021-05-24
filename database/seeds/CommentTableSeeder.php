@@ -19,6 +19,7 @@ class CommentTableSeeder extends Seeder
         //Ciclo sui post pubblicati
         foreach ($postsPublished as $post ) {
            for( $i = 0; $i < rand(0, 3); $i++) {
+               //Con un ciclo for aggiungo i nuovi commenti
                $newComment = new Comment();
                $newComment->post_id = $post->id;
                $newComment->name = $faker->name();
