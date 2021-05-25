@@ -22,6 +22,10 @@ Create A Post
       <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date">
     </div>
     <div class="form-group">
+        <label for="img">Img Post</label>
+        <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img">
+      </div>
+    <div class="form-group">
         <label for="content">Content</label>
         <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15"></textarea>
     </div>

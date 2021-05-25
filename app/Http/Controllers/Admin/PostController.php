@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -38,7 +38,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validation
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'date' => 'required|date',
+            'img' => 'nullable|url',
+            'content' => 'required|string'
+
+        ]);
+
+        $data = $request->all();
+        //Published Setter
+        if ( !isset($data['published']) ) {
+            $data['published'] = false;
+        } else {
+            $data['published'] = true;
+        }
+        //Slug Setter
+        $data['slug'] = Str::slug($data['title'] , '-');
+        //Add to Model
+        Post::create($data);
+        //Redirect
+        return redirect()->route('admin.posts.index');
+
+
+        
     }
 
     /**
