@@ -15,4 +15,16 @@ class BlogController extends Controller
         return view('guest.index' , compact('posts'));
 
     }
+
+    public function show($slug)
+    {
+        //prendo il singolo post dai dati
+        $post = Post::where('slug', $slug)->first();
+        
+        if ( $post == null ) {
+            abort(404);
+        }
+        // restituisco in pagina il singolo post identificato con lo slug
+        return view('guest.show', compact('post'));
+    }
 }
