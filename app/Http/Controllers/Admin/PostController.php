@@ -28,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('tags'));
     }
 
     /**
@@ -53,7 +54,9 @@ class PostController extends Controller
         //Slug Setter
         $data['slug'] = Str::slug($data['title'] , '-');
         //Add to Model
-        Post::create($data);
+        $newPost = Post::create($data);
+        //Attach Tags
+        $newPost->tags()->attach($data['tags']);
         //Redirect
         return redirect()->route('admin.posts.index');
     }

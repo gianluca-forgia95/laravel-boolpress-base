@@ -7,6 +7,16 @@ Create A Post
 
 @section('content')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container mt-5">
 <h1>Create a Post</h1>
 
@@ -31,8 +41,21 @@ Create A Post
     </div>
     <div class="form-check">
       <input type="checkbox" class="form-check-input" id="published" name="published">
-      <label class="form-check-label" for="published">Check me out</label>
+      <label class="form-check-label" for="published">Published</label>
     </div>
+
+    <div class="mt-5">
+      <h3>Tags</h3>
+      @foreach ($tags as $tag)
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="{{$tag->name}}" name="tags[]">
+          <label class="form-check-label" for="{{$tag->name}}">
+            {{$tag->name}}
+          </label>
+        </div>
+      @endforeach
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
