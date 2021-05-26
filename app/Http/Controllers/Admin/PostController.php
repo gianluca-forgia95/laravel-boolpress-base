@@ -40,14 +40,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //Validation
-        $request->validate([
+        
+         //Validation
+         $request->validate([
             'title' => 'required|string|max:255|unique:posts',
-            'date' => 'required|date',
-            'img' => 'nullable|url',
-            'content' => 'required|string'
+             'date' => 'required|date',
+             'img' => 'nullable|url',
+             'content' => 'required|string'
 
-        ]);
+         ]);
         $data = $request->all();
         //Published Setter
         $data['published'] = !isset($data['published']) ? 0 : 1;
@@ -80,7 +81,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        //Add Tags
         $tags = Tag::all();
+        //Return
         return view( 'admin.posts.edit' , compact('post', 'tags'));
      
     }
@@ -127,6 +130,6 @@ class PostController extends Controller
         //Delete
         $post->delete();
         //Redirect
-        return redirect()->route('admin.posts.index')->with('message', 'Il post è stato eliminato!');
+        return redirect()->route('admin.posts.index')->with('message', 'Il post è stato eliminato con successo');
     }
 }

@@ -25,19 +25,19 @@ Create A Post
     @method('POST')
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" name="title"  placeholder="Enter Title">
+      <input type="text" class="form-control" id="title" name="title"  placeholder="Enter Title" value="{{ old('title') }}">
     </div>
     <div class="form-group">
       <label for="date">Date</label>
-      <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date">
+      <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date" value="{{ old('date') }}">
     </div>
     <div class="form-group">
         <label for="img">Img Post</label>
-        <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img">
+        <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img" value="{{ old('img') }}">
       </div>
     <div class="form-group">
-        <label for="content">Content</label>
-        <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15"></textarea>
+        <label for="content">Content</label> 
+        <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15">{{ old('caption')}}</textarea>
     </div>
     <div class="form-check">
       <input type="checkbox" class="form-check-input" id="published" name="published">
