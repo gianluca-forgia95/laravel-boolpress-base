@@ -12,4 +12,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    //Function Tags per collegare piu post a piu tag
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }
