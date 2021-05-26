@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        dd($posts);
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -101,8 +101,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        //Detach Tags
+        $post->tags()->detach();
+        //Delete
+        $post->delete();
+        //Redirect
+        return redirect()->route('admin.posts.index')->with('message', 'Il post è stato eliminato!');
     }
 }
