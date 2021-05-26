@@ -9,6 +9,6 @@ class Tag extends Model
     //Function per collegare piu tag a piu post
     public function posts() 
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Post');
     }
 }

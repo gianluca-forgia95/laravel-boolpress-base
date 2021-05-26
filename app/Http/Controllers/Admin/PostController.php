@@ -92,9 +92,26 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+          //Validation
+        $request->validate([
+            'title' => 'required|string|max:255|unique:posts,title,' . $post->id,
+            'date' => 'required|date',
+            'img' => 'nullable|url',
+            'content' => 'required|string'
+        ]);
+        $data = $request->all();
+        //Published Setter
+        $data['published'] = !isset($data['published']) ? 0 : 1;
+        //Slug Setter
+        $data['slug'] = Str::slug($data['title'] , '-');
+         // Update
+         $post->update($data);
+         //Sync Tags
+         $post->tags()->sync($data['tags']);
+         //Redirect
+         return redirect()->route('admin.posts.show', $post);
     }
 
     /**
