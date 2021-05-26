@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -40,7 +41,7 @@ class PostController extends Controller
     {
         //Validation
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:posts',
             'date' => 'required|date',
             'img' => 'nullable|url',
             'content' => 'required|string'
@@ -48,11 +49,7 @@ class PostController extends Controller
         ]);
         $data = $request->all();
         //Published Setter
-        if ( !isset($data['published']) ) {
-            $data['published'] = false;
-        } else {
-            $data['published'] = true;
-        }
+        $data['published'] = !isset($data['published']) ? 0 : 1;
         //Slug Setter
         $data['slug'] = Str::slug($data['title'] , '-');
         //Add to Model
