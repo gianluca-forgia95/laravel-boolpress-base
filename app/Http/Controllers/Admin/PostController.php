@@ -46,7 +46,6 @@ class PostController extends Controller
             'content' => 'required|string'
 
         ]);
-
         $data = $request->all();
         //Published Setter
         if ( !isset($data['published']) ) {
@@ -60,9 +59,6 @@ class PostController extends Controller
         Post::create($data);
         //Redirect
         return redirect()->route('admin.posts.index');
-
-
-        
     }
 
     /**

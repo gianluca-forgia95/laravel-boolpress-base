@@ -6,10 +6,12 @@
 
 
 @section('content')
+<a href="{{ route('guest.posts.index')}}">Back to Homepage</a>
 <div class="container mt-5">
 	<h1>Title: {{$post->title}}</h1>
 	<h4>Published in: {{$post->date}}</h4>
 	<p>Content: {{$post->content}}</p>
+    
 
 	@if ($post->comments->isNotEmpty())
 	<div class="mt-5">

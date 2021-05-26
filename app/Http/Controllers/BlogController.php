@@ -20,7 +20,7 @@ class BlogController extends Controller
     {
         //prendo il singolo post dai dati
         $post = Post::where('slug', $slug)->first();
-        
+        //Se lo slug non è corretto mostro error 404
         if ( $post == null ) {
             abort(404);
         }
