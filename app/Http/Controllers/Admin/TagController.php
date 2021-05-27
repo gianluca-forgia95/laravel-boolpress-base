@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -27,7 +28,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        // $tags = Tag::all();
+         return view('admin.tags.create');
     }
 
     /**
@@ -38,7 +40,16 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            //Validation
+            $request->validate(['name' => 'required|string|max:255|unique:tags']);
+            
+            $data = $request->all();
+            //Slug Setter
+            $data['slug'] = Str::slug($data['name'] , '-');
+            //Add to Model
+            $newTag = Tag::create($data);
+            //Return
+            return redirect()->route('admin.tags.index');
     }
 
     /**
