@@ -50,10 +50,7 @@ Boolpress
 	<div class="blog-post">
 		<h2 class="blog-post-title">{{$post->title}}</h2>
 		<p class="blog-post-meta">{{$post->date}}</p>
-		<p>
-			{{$post->content}}
-		</p>
-		
+		<p>{{$post->content}}</p>
 		<div>
 			 <a href="{{route('guest.posts.show', ['slug' => $post->slug])}}">Read More</a> 
 		</div>

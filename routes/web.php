@@ -25,6 +25,8 @@ Route::get('tags/{slug}', 'BlogController@filterByTag')->name('guest.posts.filte
 Route::prefix('admin')->name('admin.')->namespace('Admin')->group( function () {
     //Routes Admin per i Posts
     Route::resource('posts', 'PostController');
+    //Routes Admin per i Tags
+    Route::resource('tags', 'TagController');
     //Route Delete per i Messaggi
     Route::delete('comments/{comment}' , 'CommentController@deleteComment')->name('comments.destroy');
 });

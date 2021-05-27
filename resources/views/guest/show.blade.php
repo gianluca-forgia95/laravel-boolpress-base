@@ -19,7 +19,7 @@
 		<ul>
 			@foreach ($post->comments as $comment)
 				<li>
-					<h5>{{$comment->name}}</h5>
+					<h5>{{$comment->name ? $comment->name : 'Anonimo'}}</h5>
 					<p>{{$comment->content}}</p>
 				</li>
 			@endforeach
@@ -45,7 +45,7 @@
 	  </div>
 	  <div class="form-group">
 		<label for="content">Commento</label>
-		<textarea class="form-control"  name="content" id="content" cols="30" rows="4" placeholder="Commento"></textarea>
+		<textarea class="form-control"  name="content" id="content" cols="30" rows="5" placeholder="Commenta..."></textarea>
 	  </div>
 	 <div class="mt-3">
 		<button type="submit" class="btn btn-primary">Add Comment</button>
