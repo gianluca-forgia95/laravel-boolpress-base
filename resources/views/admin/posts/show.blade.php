@@ -28,7 +28,7 @@
 					<form action="{{route('admin.comments.destroy', [ 'comment' => $comment->id ])}}" method="POST">
 						@csrf
 						@method('DELETE')
-						<button type="submit" class="btn btn-danger"><i class="fas fa-backspace"></i></button>
+						<button type="submit" class="btn btn-danger mb-10"><i class="fas fa-ban"></i></button>
 					</form>
 				</li>
 			@endforeach

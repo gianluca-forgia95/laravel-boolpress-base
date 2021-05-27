@@ -15,19 +15,19 @@ Edit {{ $post->title }}
         @method('PUT')
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title"  placeholder="Enter Title" value="{{ old('title') ? old('title') : $post->title }}">
+          <input type="text" class="form-control" id="title" name="title"  placeholder="Enter Title" value="{{ $post->title }}">
         </div>
         <div class="form-group">
           <label for="date">Date</label>
-          <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date" value="{{ old('date') ? old('date') : $post->title }}">
+          <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date" value="{{ $post->date }}">
         </div>
         <div class="form-group">
             <label for="img">Img Post</label>
-            <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img" value="{{ old('img') ? old('img') : $post->img }}">
+            <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img" value="{{ $post->img }}">
           </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15">{{ old('content') ? old('content') : $post->content }}</textarea>
+            <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15">{{ $post->content }}</textarea>
         </div>
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="published" name="published" {{  $post->published ? 'checked' : '' }}>

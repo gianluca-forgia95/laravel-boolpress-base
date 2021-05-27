@@ -53,6 +53,7 @@ Boolpress
 		<p>
 			{{$post->content}}
 		</p>
+		
 		<div>
 			 <a href="{{route('guest.posts.show', ['slug' => $post->slug])}}">Read More</a> 
 		</div>

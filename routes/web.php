@@ -18,7 +18,10 @@ Route::get('/', 'BlogController@index')->name('guest.posts.index');
 Route::get('posts/{slug}', 'BlogController@show')->name('guest.posts.show');
 //Route per aggiungere i messaggi
 Route::post('posts/{post}/add-comment' , 'BlogController@storeComment')->name('guest.posts.add-comment');
+//Route per mostrare i post filtrati per tag
+Route::get('tags/{slug}', 'BlogController@filterByTag')->name('guest.posts.filter-by-tag');
 
+//Admin Routes
 Route::prefix('admin')->name('admin.')->namespace('Admin')->group( function () {
     //Routes Admin per i Posts
     Route::resource('posts', 'PostController');
