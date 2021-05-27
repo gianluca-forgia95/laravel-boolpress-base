@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,22 @@ class BlogController extends Controller
         }
         // restituisco in pagina il singolo post identificato con lo slug
         return view('guest.show', compact('post'));
+    }
+
+    public function storeComment( Request $request , Post $post )
+    {
+        $request->validate([
+            'name' => 'nullable|string|max:100',
+            'content' => 'required|string',
+        ]);
+        $storedComment = new Comment();
+        $storedComment->name = $request->name;
+        $storedComment->content = $request->content;
+        $storedComment->post_id = $post->id;
+
+        $storedComment->save();
+
+        return back();
+ 
     }
 }

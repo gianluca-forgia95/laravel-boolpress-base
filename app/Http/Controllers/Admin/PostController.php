@@ -56,7 +56,9 @@ class PostController extends Controller
         //Add to Model
         $newPost = Post::create($data);
         //Attach Tags
-        $newPost->tags()->attach($data['tags']);
+        if( isset($data['tags']) ) {
+            $newPost->tags()->attach($data['tags']);
+        }
         //Redirect
         return redirect()->route('admin.posts.index');
     }
@@ -111,6 +113,9 @@ class PostController extends Controller
          // Update
          $post->update($data);
          //Sync Tags
+         if ( !isset($data['tags'])) {
+            $data['tags'] = [];
+         }
          $post->tags()->sync($data['tags']);
          //Redirect
          return redirect()->route('admin.posts.show', $post);
