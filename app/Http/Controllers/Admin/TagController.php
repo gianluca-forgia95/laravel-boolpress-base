@@ -81,9 +81,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+     //
     }
 
     /**
@@ -92,8 +92,11 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+         //Delete
+         $tag->delete();
+         //Redirect
+         return redirect()->route('admin.tags.index')->with('message', 'Il tag è stato eliminato con successo');
     }
 }
