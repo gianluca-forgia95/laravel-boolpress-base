@@ -30,7 +30,7 @@ Edit {{ $post->title }}
             <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15">{{ old('content') ? old('content') : $post->content }}</textarea>
         </div>
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="published" name="published" {{ $post->published ? 'checked' : '' }}>
+          <input type="checkbox" class="form-check-input" id="published" name="published" {{  $post->published ? 'checked' : '' }}>
           <label class="form-check-label" for="published">Published</label>
         </div>
     

@@ -47,7 +47,6 @@ class PostController extends Controller
              'date' => 'required|date',
              'img' => 'nullable|url',
              'content' => 'required|string'
-
          ]);
         $data = $request->all();
         //Published Setter

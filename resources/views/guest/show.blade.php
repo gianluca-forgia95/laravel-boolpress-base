@@ -26,6 +26,14 @@
 		</ul>
 	</div>
 	@endif
+
+	@if ($post->tags->isNotEmpty())
+	<h3>Tags</h3>
+	 @foreach ($post->tags as $tag)
+	  <span class="badge badge-primary">{{$tag->name}}</span>
+	 @endforeach
+		
+	@endif
 </div>
     
 @endsection
