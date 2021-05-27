@@ -25,6 +25,11 @@
 				<li>
 					<h5>{{$comment->name ? $comment->name : 'Anonimo'}}</h5>
 					<p>{{$comment->content}}</p>
+					<form action="{{route('admin.comments.destroy', [ 'comment' => $comment->id ])}}" method="POST">
+						@csrf
+						@method('DELETE')
+						<button type="submit" class="btn btn-danger"><i class="fas fa-backspace"></i></button>
+					</form>
 				</li>
 			@endforeach
 		</ul>

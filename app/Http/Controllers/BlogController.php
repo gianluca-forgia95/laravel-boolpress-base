@@ -31,17 +31,19 @@ class BlogController extends Controller
 
     public function storeComment( Request $request , Post $post )
     {
+        //Validation del commento
         $request->validate([
             'name' => 'nullable|string|max:100',
             'content' => 'required|string',
         ]);
+        //Istanzio il nuovo commento
         $storedComment = new Comment();
         $storedComment->name = $request->name;
         $storedComment->content = $request->content;
         $storedComment->post_id = $post->id;
-
+        //Lo salvo
         $storedComment->save();
-
+        //Back sulla stessa pagina
         return back();
  
     }
