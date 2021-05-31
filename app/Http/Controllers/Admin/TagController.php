@@ -41,15 +41,15 @@ class TagController extends Controller
     public function store(Request $request)
     {
             //Validation
-            $request->validate(['name' => 'required|string|max:255|unique:tags']);
+            $request->validate(['name' => 'required|string|max:50|unique:tags']);
             
             $data = $request->all();
             //Slug Setter
             $data['slug'] = Str::slug($data['name'] , '-');
             //Add to Model
-            $newTag = Tag::create($data);
+            Tag::create($data);
             //Return
-            return redirect()->route('admin.tags.index');
+            return redirect()->route('admin.tags.index')->with('message', 'Il tag è stato creato!');
     }
 
     /**
