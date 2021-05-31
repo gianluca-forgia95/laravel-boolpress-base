@@ -7,6 +7,7 @@ use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\CommentAdded;
 
 class BlogController extends Controller
 {
@@ -49,6 +50,8 @@ class BlogController extends Controller
         $storedComment->post_id = $post->id;
         //Lo salvo
         $storedComment->save();
+        //e-mail di notifica
+         Mail::to('info@boolpress.com')->send(new CommentAdded($post));
         //Back sulla stessa pagina
         return back();
  
