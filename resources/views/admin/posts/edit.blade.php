@@ -10,7 +10,7 @@ Edit {{ $post->title }}
 
   <div class="container mt-10">
     <h1>Edit Article</h1>
-    <form action="{{ route('admin.posts.update', [ 'post' => $post->id ])}}" method="POST">
+    <form action="{{ route('admin.posts.update', [ 'post' => $post->id ])}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -22,9 +22,10 @@ Edit {{ $post->title }}
           <input type="date" class="form-control" id="date" name="date" placeholder="Enter Date" value="{{ $post->date }}">
         </div>
         <div class="form-group">
-            <label for="img">Img Post</label>
-            <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img" value="{{ $post->img }}">
-          </div>
+          <label for="img">Img Post</label>
+          <img src="{{asset('storage/' . $post->img)}}" width="100">
+          <input type="file" id="img" name="img">
+      </div>
         <div class="form-group">
             <label for="content">Content</label>
             <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15">{{ $post->content }}</textarea>

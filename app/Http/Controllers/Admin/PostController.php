@@ -107,7 +107,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255|unique:posts,title,' . $post->id,
             'date' => 'required|date',
-            'img' => 'nullable|url',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'content' => 'required|string'
         ]);
         $data = $request->all();
@@ -115,6 +115,9 @@ class PostController extends Controller
         $data['published'] = !isset($data['published']) ? 0 : 1;
         //Slug Setter
         $data['slug'] = Str::slug($data['title'] , '-');
+        if ( isset($data['img']) ) {
+            $data['img'] = Storage::disk('public')->put('images', $data['img']);
+        }
          // Update
          $post->update($data);
          //Sync Tags
