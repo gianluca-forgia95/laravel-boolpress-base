@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -45,7 +46,7 @@ class PostController extends Controller
          $request->validate([
             'title' => 'required|string|max:255|unique:posts',
              'date' => 'required|date',
-             'img' => 'nullable|url',
+             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'content' => 'required|string'
          ]);
         $data = $request->all();
@@ -53,6 +54,10 @@ class PostController extends Controller
         $data['published'] = !isset($data['published']) ? 0 : 1;
         //Slug Setter
         $data['slug'] = Str::slug($data['title'] , '-');
+        //Img Local Upload
+        if ( isset($data['img']) ) {
+            $data['img'] = Storage::disk('public')->put('images', $data['img']);
+        }
         //Add to Model
         $newPost = Post::create($data);
         //Attach Tags

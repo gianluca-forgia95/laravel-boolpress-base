@@ -20,7 +20,7 @@ Create A Post
 <div class="container mt-5">
 <h1>Create a Post</h1>
 
-<form action="{{ route('admin.posts.store')}}" method="POST">
+<form action="{{ route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div class="form-group">
@@ -33,8 +33,8 @@ Create A Post
     </div>
     <div class="form-group">
         <label for="img">Img Post</label>
-        <input type="text" class="form-control" id="img" name="img"  placeholder="Enter Url Img" value="{{ old('img') }}">
-      </div>
+        <input type="file" id="img" name="img">
+    </div>
     <div class="form-group">
         <label for="content">Content</label> 
         <textarea class="form-control" id="content" name="content" placeholder="Enter Content" rows="15">{{ old('caption')}}</textarea>
