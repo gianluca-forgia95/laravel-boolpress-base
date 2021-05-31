@@ -12,6 +12,8 @@ All Tags
    <ul>
 @foreach ($tags as $tag)
   <li>{{ $tag->name }} </li>
+  <a href="{{route('admin.tags.show', [ 'tag' => $tag->id ])}}"><button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button></a>
+	<a href="{{route('admin.tags.edit', [ 'tag' => $tag->id ])}}"><button type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></button></a>
   <form action="{{route('admin.tags.destroy', [ 'tag' => $tag->id ])}}" method="POST">
     @csrf
     @method('DELETE')
